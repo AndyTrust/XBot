@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="it" data-tema="sistema">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f7f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151517" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <title>XBot</title>
+  <link rel="manifest" href="/app/manifest.webmanifest">
+  <link rel="icon" href="/app/icone/app.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/app/icone/app-192.png">
+  <link rel="stylesheet" href="/app/stile.css">
+  <link rel="stylesheet" href="/app/finestre.css">
+  <link rel="stylesheet" href="/app/componenti.css">
+  <link rel="stylesheet" href="/app/pagine.css">
+  <script type="module" src="/app/app.js"></script>
+</head>
+<body>
+  <noscript>XBot ha bisogno di JavaScript.</noscript>
+
+  <!-- Accesso (Layout sez. 8) -->
+  <main id="accesso" class="accesso" hidden>
+    <form id="modulo-accesso" class="accesso-scheda" autocomplete="on">
+      <div class="accesso-logo" aria-hidden="true"></div>
+      <h1 id="nome-app">XBot</h1>
+      <p class="accesso-sotto">Entra per parlare con i tuoi assistenti.</p>
+      <input name="utente" type="text" class="fuori-vista" autocomplete="username" value="" placeholder="nome utente" tabindex="-1" aria-hidden="true">
+      <label>Password
+        <input name="password" type="password" autocomplete="current-password" required>
+      </label>
+      <label id="riga-totp" hidden>Codice TOTP
+        <input name="codice_totp" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6" placeholder="6 cifre">
+      </label>
+      <label>Nome del dispositivo
+        <input name="dispositivo" autocomplete="off" placeholder="es. Mac di casa">
+      </label>
+      <label class="accesso-casella"><input name="fidato" type="checkbox" checked> Non chiedere più il codice su questo dispositivo</label>
+      <button type="button" id="tasto-ho-codice" class="tasto-link">Ho un codice</button>
+      <p id="accesso-errore" class="accesso-errore" role="alert" hidden></p>
+      <button type="submit" class="tasto primario">Entra</button>
+    </form>
+  </main>
+
+  <!-- Finestra principale (Layout sez. 1) -->
+  <div id="finestra" class="finestra" hidden>
+    <aside id="barra" class="barra" aria-label="Assistenti">
+      <div class="barra-testa">
+        <span class="barra-titolo">Assistenti</span>
+        <button class="tasto-icona" id="tasto-cerca" aria-label="Cerca (⌘K)" title="Cerca (⌘K)"></button>
+        <button class="tasto-icona" id="tasto-nuovo" aria-label="Nuovo assistente" title="Nuovo assistente"></button>
+      </div>
+      <div id="fissati" class="fissati"></div>
+      <nav id="sezioni" class="sezioni"></nav>
+      <div class="barra-piede">
+        <button id="tasto-account" class="account" aria-haspopup="menu" aria-label="Account"></button>
+        <button id="tasto-collegamenti" class="collegamenti" aria-label="Collegamenti" title="Collegamenti"></button>
+      </div>
+    </aside>
+    <div id="velo" class="velo" hidden></div>
+
+    <section id="chat" class="chat" aria-label="Chat">
+      <header class="chat-testa">
+        <button class="tasto-icona solo-stretta" id="tasto-cassetto" aria-label="Apri la barra degli assistenti"></button>
+        <div class="pillola-gruppo">
+          <button id="pillola" class="pillola" aria-label="Dettagli dell'assistente"></button>
+          <button id="pillola-menu" class="tasto-icona piccolo" aria-haspopup="menu" aria-label="Sessioni dell'assistente"></button>
+        </div>
+        <button class="tasto-icona solo-stretta" id="tasto-info" aria-label="Dettagli"></button>
+      </header>
+      <div id="messaggi" class="messaggi" role="log" aria-live="polite"></div>
+      <div id="vuoto" class="vuoto" hidden></div>
+      <div id="stato-turno" class="stato-turno" hidden></div>
+      <form id="scrittura" class="scrittura" autocomplete="off">
+        <div id="allegati-scrittura" class="allegati-scrittura" hidden></div>
+        <div class="scrittura-riquadro">
+          <button type="button" class="tasto-icona" id="tasto-allega" aria-label="Allega o inserisci" aria-haspopup="menu" title="Allega file, foto, cassaforte"></button>
+          <textarea id="campo" rows="1" placeholder="Scrivi…" aria-label="Messaggio"></textarea>
+          <button type="button" class="tasto-icona" id="tasto-microfono" aria-label="Dettato: tieni premuto e parla (⌘D)" title="Tieni premuto e parla (⌘D)"></button>
+          <button type="button" class="tasto-icona scuro" id="tasto-manilibere" aria-label="Chiama" title="Chiama: chat vocale con l'assistente"></button>
+          <button type="submit" class="tasto-icona scuro" id="tasto-invia" aria-label="Invia" hidden></button>
+        </div>
+        <div id="riga-provider" class="riga-provider"></div>
+      </form>
+    </section>
+
+    <aside id="pannello" class="pannello" aria-label="Dettagli" hidden></aside>
+  </div>
+
+  <div id="sovrapposte"></div>
+  <div id="avviso-volante" class="avviso-volante" role="status" hidden></div>
+</body>
+</html>

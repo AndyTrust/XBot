@@ -1,0 +1,19 @@
+# Da aggiungere DENTRO il sito di XBot nel Caddyfile (<dominio>), prima del
+# reverse_proxy di XBot. spj-caddy raggiunge il container per nome sulla sua rete Docker
+# (compose.yaml lo mette lì con XBOT_RETE_CADDY).
+#
+# 1. I metadati della risorsa: il server li pubblica alla radice con il prefisso nel percorso
+#    (RFC 9728), e la sfida 401 punta lì.
+handle /.well-known/oauth-protected-resource/google-mcp* {
+	reverse_proxy xbot-google-mcp:8000
+}
+# 2. I metadati del server di autorizzazione: il client li cerca alla radice con il prefisso
+#    (RFC 8414), il server li ha senza prefisso.
+handle /.well-known/oauth-authorization-server/google-mcp* {
+	rewrite * /.well-known/oauth-authorization-server
+	reverse_proxy xbot-google-mcp:8000
+}
+# 3. Tutto il resto (/mcp, /authorize, /consent, /token, /register, /oauth2callback), senza prefisso.
+handle_path /google-mcp/* {
+	reverse_proxy xbot-google-mcp:8000
+}

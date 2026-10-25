@@ -1,0 +1,15 @@
+# Scritto da installa.sh di XBot (lavoratore, Linux). Modello: ops/systemd/utente/worker.service
+[Unit]
+Description=@NOME@ (XBot): lavoratore di questo computer
+After=network-online.target
+
+[Service]
+Type=simple
+Environment="XBOT_WORKER_CARTELLA=@WORKER@"
+Environment="PATH=@PATH@"
+ExecStart="@PREFISSO@/bin/xbot-worker" run --cartella "@WORKER@"
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=default.target

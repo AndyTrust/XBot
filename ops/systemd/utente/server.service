@@ -1,0 +1,16 @@
+# Scritto da installa.sh di XBot (modo PC locale, Linux). Modello: ops/systemd/utente/server.service
+[Unit]
+Description=@NOME@ (XBot): motore degli assistenti
+
+[Service]
+Type=simple
+WorkingDirectory=@DATI@
+ExecStart="@PREFISSO@/bin/xbot-avvia"
+Environment="PATH=@PATH@"
+Restart=on-failure
+RestartSec=3
+KillMode=mixed
+TimeoutStopSec=15
+
+[Install]
+WantedBy=default.target

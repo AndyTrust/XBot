@@ -1,0 +1,12 @@
+# Scritto da installa.sh di XBot (modo vps). Modello: ops/systemd/xbot-aggiorna.timer
+# Ogni giorno alle 04:00 (se il computer era spento, al primo avvio dopo).
+[Unit]
+Description=@NOME@ (XBot): aggiornamento giornaliero
+
+[Timer]
+OnCalendar=*-*-* 04:00:00
+Persistent=true
+Unit=@SIGLA@-aggiorna.service
+
+[Install]
+WantedBy=timers.target

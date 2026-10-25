@@ -1,0 +1,12 @@
+# Scritto da installa.sh di XBot (modo vps). Modello: ops/systemd/xbot-aggiorna.service
+# Lancia l'aggiornamento: a mano (systemctl start), dal timer con XBOT_AGGIORNAMENTO=auto.
+[Unit]
+Description=@NOME@ (XBot): aggiornamento all'ultima versione
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=@SORGENTE@
+Environment="PATH=@PATHAGG@"
+ExecStart=/bin/bash "@SORGENTE@/installa.sh" --aggiorna --si

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Scritto da installa.sh di XBot. Modello: ops/launchd/server.plist.modello -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>@ETICHETTA@.server</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>@PREFISSO@/bin/xbot-avvia</string>
+  </array>
+  <key>WorkingDirectory</key><string>@DATI@</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>@PATH@</string>
+    <key>HOME</key><string>@HOME@</string>
+  </dict>
+  <key>RunAtLoad</key><true/>
+  <key>KeepAlive</key><true/>
+  <key>ThrottleInterval</key><integer>10</integer>
+  <key>ProcessType</key><string>Interactive</string>
+  <key>StandardOutPath</key><string>@DATI@/log/server.log</string>
+  <key>StandardErrorPath</key><string>@DATI@/log/server.err.log</string>
+</dict>
+</plist>

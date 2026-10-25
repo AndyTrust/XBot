@@ -1,0 +1,35 @@
+# Scritto da installa.sh di XBot (modo VPS). Modello: ops/systemd/xbot.service
+# I valori fra chiocciole li riempie installa.sh: @NOME@, @UTENTE@, @PREFISSO@, @DATI@, @CONFIG@.
+[Unit]
+Description=@NOME@ (XBot): motore degli assistenti
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=@UTENTE@
+Group=@UTENTE@
+WorkingDirectory=@DATI@
+EnvironmentFile=@CONFIG@
+Environment=HOME=@DATI@
+Environment=LANG=C.UTF-8
+Environment=PATH=@DATI@/.local/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=@PREFISSO@/bin/xbot-server
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGTERM
+# Allo stop il segnale va solo al server, che chiude da sé i computer degli assistenti;
+# i figli rimasti si chiudono dopo.
+KillMode=mixed
+TimeoutStopSec=15
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=@DATI@
+ProtectKernelTunables=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+
+[Install]
+WantedBy=multi-user.target

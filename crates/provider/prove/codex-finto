@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+"""Il `codex` finto delle prove di XBot.
+
+`codex exec [resume <id>] --json … -` : legge il testo da stdin e ristampa il campione
+`codex-stream-esempio.jsonl` (codex-cli 0.157.1): `thread.started`, l'avviso dell'hook
+(`item.completed` di tipo `error`), `turn.started`, la risposta (testo rovesciato) in un
+`agent_message`, `turn.completed` con `usage`. Parole chiave nel testo:
+  [fallisci]  stampa `turn.failed`
+  [strumento] aggiunge un `command_execution` di `ls` (started/completed)
+  [lento]     aspetta 30 s dopo `thread.started`
+  [crolla]    scrive su stderr ed esce con 2 senza righe
+  [argomenti] risponde con gli argomenti ricevuti (JSON)
+Con `resume <id>` il `thread_id` è quell'id.
+"""
+import json, os, sys, time, uuid
+
+QUI = os.path.dirname(os.path.abspath(__file__))
+
+
+def stampa(v):
+    sys.stdout.write(json.dumps(v, ensure_ascii=False) + "\n")
+    sys.stdout.flush()
+
+
+def main():
+    a = sys.argv[1:]
+    testo = sys.stdin.read() if a and a[-1] == "-" else (a[-1] if a else "")
+    with open(os.path.join(QUI, "codex-stream-esempio.jsonl"), encoding="utf-8") as f:
+        campione = [json.loads(r) for r in f if r.strip()]
+    if "[crolla]" in testo:
+        sys.stderr.write("Error: not logged in\n")
+        sys.exit(2)
+    tid = a[a.index("resume") + 1:][-2] if "resume" in a else str(uuid.uuid4())
+    stampa({"type": "thread.started", "thread_id": tid})
+    if "[lento]" in testo:
+        time.sleep(30)
+    stampa(next(v for v in campione if v["type"] == "item.completed" and v["item"]["type"] == "error"))
+    stampa({"type": "turn.started"})
+    if "[fallisci]" in testo:
+        stampa({"type": "turn.failed", "error": {"message": "errore finto su richiesta"}})
+        return
+    if "[strumento]" in testo:
+        for v in campione:
+            if v["type"].startswith("item.") and v["item"]["type"] == "command_execution" and v["item"]["command"].endswith("-lc ls"):
+                stampa(v)
+    risposta = json.dumps(a) if "[argomenti]" in testo else testo.strip()[::-1]
+    stampa({"type": "item.completed", "item": {"id": "item_9", "type": "agent_message", "text": risposta}})
+    stampa(next(v for v in campione if v["type"] == "turn.completed"))
+
+
+if __name__ == "__main__":
+    main()

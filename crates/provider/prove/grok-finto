@@ -1,0 +1,198 @@
+#!/usr/bin/env python3
+"""Il `grok` (Grok Build di xAI) finto delle prove di XBot.
+
+Legge il testo da `--single=` e ristampa il formato di `grok-stream-esempio.jsonl` (grok 1.0.70,
+registrato il 2026-10-25): un `thought`, il testo ricevuto rovesciato in tre `text`, `usage` ed `end`.
+Parole chiave nel testo:
+  [fallisci]  stampa l'errore vero «Not signed in» ed esce con 1
+  [strumento] aggiunge un `tool_call` di `ls -la` con i suoi `tool_call_update`
+  [negato]    il `tool_call` negato (`tool_call_update` `failed`) e `end` con `cancelled` (comando negato in headless)
+  [lento]     aspetta 30 s dopo la prima riga
+  [argomenti] risponde con gli argomenti ricevuti (JSON) al posto del rovescio
+  [ambiente]  risponde con le variabili della casa isolata (JSON: HOME, GROK_HOME, GROK_MEMORY…)
+  [ambiente:NOME] risponde «NOME presente» o «NOME assente» (anche più d'uno)
+`models` e la sonda dei livelli (`--reasoning-effort xbot-sonda`) rispondono come grok vero.
+`--resume=<id>` o `--session-id=<id>` danno il `sessionId` dell'`end`.
+"""
+import json, os, re, sys, time, uuid
+
+QUI = os.path.dirname(os.path.abspath(__file__))
+
+
+def opzione(nome):
+    for a in sys.argv[1:]:
+        if a.startswith(nome + "="):
+            return a[len(nome) + 1:]
+    return None
+
+
+VARIABILI = ["HOME", "GROK_HOME", "GROK_MEMORY", "GROK_SUBAGENTS", "GROK_TELEMETRY_ENABLED",
+             "GROK_DISABLE_AUTOUPDATER"]
+
+
+def ambiente(testo="[ambiente]"):
+    """`[ambiente]`: le variabili della casa; `[ambiente:NOME]`: «NOME presente/assente»."""
+    nomi = re.findall(r"\[ambiente:([A-Za-z_][A-Za-z0-9_]*)\]", testo)
+    if nomi:
+        return " ".join(f"{n} {'presente' if n in os.environ else 'assente'}" for n in nomi)
+    return json.dumps({k: os.environ.get(k) for k in VARIABILI})
+
+
+def stampa(v):
+    sys.stdout.write(json.dumps(v, ensure_ascii=False) + "\n")
+    sys.stdout.flush()
+
+
+def main():
+    if sys.argv[1:2] == ["models"]:
+        print("You are logged in with grok.com.\n\nDefault model: grok-4.7\n\nAvailable models:\n"
+              "  * grok-4.7 (default)\n  - grok-4.7-build-fast\n  - grok-4.6\n  - grok-4.5")
+        return
+    if "xbot-sonda" in sys.argv:
+        m = sys.argv[sys.argv.index("-m") + 1]
+        livelli = "high, medium, low" if m == "grok-4.5" else "xhigh, high, medium, low"
+        stampa({"type": "error", "message": f"--effort/--reasoning-effort: unknown effort level 'xbot-sonda'; use one of: {livelli}", "cwd": "/tmp"})
+        sys.exit(1)
+    testo = opzione("--single") or ""
+    with open(os.path.join(QUI, "grok-stream-esempio.jsonl"), encoding="utf-8") as f:
+        campione = [json.loads(r) for r in f if r.strip()]
+    sid = opzione("--resume") or opzione("--session-id") or str(uuid.uuid4())
+    if "[fallisci]" in testo:
+        stampa({"type": "error", "message": "Not signed in. To authenticate without a browser, run:\n  grok login --device-code"})
+        sys.stderr.write("Error: Not signed in.\n")
+        sys.exit(1)
+    stampa({"type": "thought", "data": "Rispondo."})
+    if "[lento]" in testo:
+        time.sleep(30)
+    if "[strumento]" in testo:
+        tc = next(v for v in campione if v["type"] == "tool_call" and "ls" in v["rawInput"]["command"])
+        stampa(tc)
+        for v in campione:
+            if v["type"] == "tool_call_update" and v["toolCallId"] == tc["toolCallId"]:
+                stampa(v)
+    if "[ambiente" in testo:
+        risposta = ambiente(testo)
+    elif "[argomenti]" in testo:
+        risposta = json.dumps(sys.argv[1:])
+    else:
+        risposta = testo.strip()[::-1]
+    fine = dict(next(v for v in campione if v["type"] == "end" and v["stopReason"] == "end_turn"))
+    if "[negato]" in testo:
+        tc = next(v for v in campione if v["type"] == "tool_call" and ">" in v["rawInput"]["command"])
+        stampa(tc)
+        for v in campione:
+            if v["type"] == "tool_call_update" and v["toolCallId"] == tc["toolCallId"]:
+                stampa(v)
+        fine = dict(next(v for v in campione if v["type"] == "end" and v["stopReason"] == "cancelled"))
+        sys.stderr.write("permission required: Execute `echo ciao > scritto.txt` was not run, as a headless run cannot ask for approval\n")
+    else:
+        n = max(1, -(-len(risposta) // 3))
+        for i in range(0, len(risposta), n):
+            stampa({"type": "text", "data": risposta[i:i + n]})
+    stampa(next(v for v in campione if v["type"] == "usage"))
+    fine["sessionId"] = sid
+    stampa(fine)
+
+
+def acp():
+    """`grok agent [--always-approve] [-m m] stdio`: ACP su stdin/stdout (Fase 2.G), come grok 1.0.70
+    (`grok-acp-esempio.jsonl`). Un processo per più `session/prompt`. Parole chiave del testo:
+    [fallisci] errore «Not signed in» al prompt; [strumento] `tool_call` letto senza permesso;
+    [negato] `session/request_permission` per `echo x > prova4.txt`: se la risposta è un rifiuto
+    `tool_call_update` failed e `cancelled`, altrimenti completed; [lento] 30 s dopo il primo pezzo;
+    [pid] risponde «pid <pid> turno <n> livello <l>»; [argomenti] risponde con gli argomenti."""
+    sid = None
+    livello = None
+    n = 0
+    prossimo = [100]
+
+    def rispondi(i, risultato=None, errore=None):
+        v = {"jsonrpc": "2.0", "id": i}
+        if errore:
+            v["error"] = errore
+        else:
+            v["result"] = risultato
+        stampa(v)
+
+    def aggiorna(u):
+        stampa({"jsonrpc": "2.0", "method": "session/update", "params": {"sessionId": sid, "update": u}})
+
+    def leggi_risposta(i):
+        while True:
+            r = sys.stdin.readline()
+            if not r:
+                sys.exit(0)
+            v = json.loads(r)
+            if v.get("id") == i and "method" not in v:
+                return v
+
+    for riga in sys.stdin:
+        if not riga.strip():
+            continue
+        v = json.loads(riga)
+        m, i, p = v.get("method"), v.get("id"), v.get("params") or {}
+        if m == "initialize":
+            stampa({"jsonrpc": "2.0", "method": "_x.ai/settings/update", "params": {}})
+            rispondi(i, {"protocolVersion": 1, "agentCapabilities": {"loadSession": True}})
+        elif m == "session/new":
+            sid = str(uuid.uuid4())
+            rispondi(i, {"sessionId": sid})
+        elif m == "session/load":
+            sid = p["sessionId"]
+            aggiorna({"sessionUpdate": "agent_message_chunk", "content": {"type": "text", "text": "storia"}})
+            rispondi(i, {"sessionId": sid})
+        elif m == "session/set_config_option":
+            livello = p.get("value")
+            rispondi(i, {"configOptions": []})
+        elif m == "session/prompt":
+            n += 1
+            testo = "".join(b.get("text", "") for b in p["prompt"])
+            if "[fallisci]" in testo:
+                rispondi(i, errore={"code": -32000, "message": "Not signed in. Run grok login"})
+                continue
+            aggiorna({"sessionUpdate": "agent_thought_chunk", "content": {"type": "text", "text": "Rispondo."}})
+            motivo = "end_turn"
+            if "[strumento]" in testo:
+                tc = "call-finto-ls"
+                aggiorna({"sessionUpdate": "tool_call", "toolCallId": tc, "title": "list_directory", "rawInput": {"command": "ls -la"}})
+                aggiorna({"sessionUpdate": "tool_call_update", "toolCallId": tc, "status": "completed", "rawOutput": {"output_for_prompt": "a.txt"}})
+            if "[negato]" in testo:
+                tc = "call-finto-echo"
+                aggiorna({"sessionUpdate": "tool_call", "toolCallId": tc, "title": "run_terminal_command", "rawInput": {"command": "echo x > prova4.txt"}})
+                prossimo[0] += 1
+                rid = prossimo[0]
+                stampa({"jsonrpc": "2.0", "id": rid, "method": "session/request_permission", "params": {"sessionId": sid,
+                        "toolCall": {"toolCallId": tc, "kind": "execute", "rawInput": {"variant": "Bash", "command": "echo x > prova4.txt"}},
+                        "options": [{"optionId": "allow-once", "kind": "allow_once"}, {"optionId": "reject-once", "kind": "reject_once"}]}})
+                scelta = leggi_risposta(rid)["result"]["outcome"]["optionId"]
+                if scelta.startswith("reject"):
+                    aggiorna({"sessionUpdate": "tool_call_update", "toolCallId": tc, "status": "failed",
+                              "content": [{"type": "content", "content": {"type": "text", "text": "User rejected the execution"}}]})
+                    motivo = "cancelled"
+                else:
+                    aggiorna({"sessionUpdate": "tool_call_update", "toolCallId": tc, "status": "completed", "rawOutput": {"output_for_prompt": ""}})
+            if motivo == "end_turn":
+                if "[pid]" in testo:
+                    risposta = f"pid {os.getpid()} turno {n} livello {livello}"
+                elif "[argomenti]" in testo:
+                    risposta = json.dumps(sys.argv[1:])
+                elif "[ambiente" in testo:
+                    risposta = ambiente(testo)
+                else:
+                    risposta = testo.strip()[::-1]
+                k = max(1, -(-len(risposta) // 3))
+                for j in range(0, len(risposta), k):
+                    aggiorna({"sessionUpdate": "agent_message_chunk", "content": {"type": "text", "text": risposta[j:j + k]}})
+                    if "[lento]" in testo:
+                        time.sleep(30)
+            stampa({"jsonrpc": "2.0", "method": "_x.ai/session/prompt_complete", "params": {}})
+            rispondi(i, {"stopReason": motivo, "_meta": {"sessionId": sid, "usage": {
+                "inputTokens": 32722, "outputTokens": 78, "cachedReadTokens": 1664, "costUsdTicks": 215614400}}})
+        elif i is not None:
+            rispondi(i, errore={"code": -32601, "message": "non gestito"})
+
+
+if "agent" in sys.argv[1:2] and "stdio" in sys.argv:
+    acp()
+else:
+    main()

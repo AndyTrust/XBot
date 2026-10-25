@@ -1,0 +1,17 @@
+# Blocco Caddy per XBot. installa.sh lo riempie con il dominio e l'indirizzo d'ascolto e lo
+# stampa: non tocca un Caddy esistente. Va in coda al Caddyfile, poi `caddy reload`.
+# XBOT_COOKIE_SICURO=1 e XBOT_PROXY_FIDATO (l'indirizzo da cui arriva Caddy) vanno in xbot.env.
+@DOMINIO@ {
+	# Il flusso SSE (/api/v1/sessioni/<id>/flusso) resta fuori dalla compressione.
+	@compressibile not header Accept text/event-stream
+	encode @compressibile zstd gzip
+
+	reverse_proxy @ASCOLTO@ {
+		header_up X-Forwarded-For {remote_host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Real-IP {remote_host}
+		# Consegna subito ogni pezzo del flusso SSE.
+		flush_interval -1
+	}
+	# Nessuna direttiva log: gli indirizzi e i percorsi restano fuori dai file di Caddy.
+}

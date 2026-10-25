@@ -1,0 +1,55 @@
+#!/usr/bin/env python3
+"""Il `gemini` finto delle prove di XBot.
+
+`gemini -o stream-json [--approval-mode=…] --prompt=<testo>`: ristampa
+`gemini-stream-esempio.jsonl`. ATTENZIONE: quel campione è scritto a mano dal sorgente di
+gemini-cli 0.31.0 (`nonInteractiveCli.js`), perché il client vero sul Mac dell'utente non entra
+più (IneligibleTierError, 2026-10-24). La risposta è il testo rovesciato in tre `message`
+delta. Parole chiave:
+  [fallisci]  stampa `result` con `status: error`
+  [strumento] aggiunge `tool_use` / `tool_result` di `ls`
+  [lento]     aspetta 30 s dopo `init`
+  [argomenti] risponde con gli argomenti ricevuti (JSON)
+`-r <id>` fa usare quell'id come `session_id`.
+"""
+import json, os, sys, time, uuid
+
+QUI = os.path.dirname(os.path.abspath(__file__))
+
+
+def stampa(v):
+    sys.stdout.write(json.dumps(v, ensure_ascii=False) + "\n")
+    sys.stdout.flush()
+
+
+def main():
+    a = sys.argv[1:]
+    testo = next((x[len("--prompt="):] for x in a if x.startswith("--prompt=")), "")
+    with open(os.path.join(QUI, "gemini-stream-esempio.jsonl"), encoding="utf-8") as f:
+        campione = [json.loads(r) for r in f if r.strip()]
+    tipo = lambda t: next(dict(v) for v in campione if v["type"] == t)
+    init = tipo("init")
+    init["session_id"] = a[a.index("-r") + 1] if "-r" in a else str(uuid.uuid4())
+    if "-m" in a:
+        init["model"] = a[a.index("-m") + 1]
+    stampa(init)
+    if "[lento]" in testo:
+        time.sleep(30)
+    if "[fallisci]" in testo:
+        stampa({"type": "result", "status": "error", "error": {"type": "FatalError", "message": "errore finto su richiesta"},
+                "stats": tipo("result")["stats"]})
+        return
+    if "[strumento]" in testo:
+        stampa(tipo("tool_use"))
+        stampa(tipo("tool_result"))
+    risposta = json.dumps(a) if "[argomenti]" in testo else testo.strip()[::-1]
+    n = max(1, -(-len(risposta) // 3))
+    for i in range(0, len(risposta), n):
+        time.sleep(0.02)
+        m = tipo("message") if False else {"type": "message", "role": "assistant", "content": risposta[i:i + n], "delta": True}
+        stampa(m)
+    stampa(tipo("result"))
+
+
+if __name__ == "__main__":
+    main()

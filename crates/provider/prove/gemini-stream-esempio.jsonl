@@ -1,0 +1,6 @@
+{"type":"init","timestamp":"2026-10-24T19:00:00.000Z","session_id":"5f0c3c6e-0000-4000-8000-000000000001","model":"gemini-2.5-flash-lite"}
+{"type":"message","timestamp":"2026-10-24T19:00:00.010Z","role":"user","content":"Rispondi solo con la parola: ciao"}
+{"type":"message","timestamp":"2026-10-24T19:00:01.000Z","role":"assistant","content":"ciao","delta":true}
+{"type":"tool_use","timestamp":"2026-10-24T19:00:01.100Z","tool_name":"run_shell_command","tool_id":"run_shell_command-1","parameters":{"command":"ls","description":"Elenca i file"}}
+{"type":"tool_result","timestamp":"2026-10-24T19:00:01.200Z","tool_id":"run_shell_command-1","status":"success","output":"file-di-prova.txt"}
+{"type":"result","timestamp":"2026-10-24T19:00:02.000Z","status":"success","stats":{"total_tokens":120,"input_tokens":100,"output_tokens":20,"cached":0,"input":100,"duration_ms":2000,"tool_calls":0}}

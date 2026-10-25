@@ -1,0 +1,65 @@
+# In questo file vanno solo segreti, artefatti e copie. I documenti interni del repository
+# di lavoro (CONTRATTO-*.md, MEMORIA.md) restano tracciati: dall'albero pubblico li toglie
+# ops/pubblica/prepara_pubblico.py con ops/pubblica/esclusi.txt.
+
+# Rust
+/target/
+target*/
+**/*.rs.bk
+# Configurazione locale di cargo (cartella target della macchina)
+.cargo/
+
+# Segreti
+.env
+.env.*
+*.env
+!.env.example
+!*.env.esempio
+*.pem
+*.key
+auth*.json
+client_secret*.json
+accesso-iniziale*
+totp*
+!crates/**/totp*.rs
+
+# Database (dati e cassaforte cifrata)
+*.sqlite
+*.sqlite-*
+*.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+voce-venv/
+
+# Copie e appunti di lavoro
+*.bak*
+*.prima*
+*.diff
+*.patch
+export-*/
+web/prove/schermate-*
+
+# Guide e memorie locali degli agenti (restano su disco)
+.claude/memoria/
+.claude/settings.local.json
+CLAUDE.md
+GEMINI.md
+
+# Interfaccia web
+/dist/
+/node_modules/
+
+# Mac, OneDrive, editor
+.DS_Store
+*.icloud
+.idea/
+.vscode/
+
+# Materiale da studiare: sta fuori dal repository, mai qui
+/materiale/
+
+# Voci personali della voce (non versionate)
+voce/sigle.locali.json

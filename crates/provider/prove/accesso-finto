@@ -1,0 +1,15 @@
+#!/bin/sh
+# Un comando di accesso finto (prove della 2.I): stampa un url e un codice come codex e grok.
+case "$1" in
+  muto) sleep 5; exit 1 ;;
+esac
+echo "To sign in, open this URL in your browser:"
+echo ""
+echo "  https://esempio.it/accedi?x=1"
+echo ""
+echo "  ABCD-1234"
+case "$1" in
+  codice) read riga; [ "$riga" = "il-codice" ] || exit 2; [ -n "$ACCESSO_FILE" ] && echo ok > "$ACCESSO_FILE"; exit 0 ;;
+  lento) sleep 30; exit 0 ;;
+  *) sleep 1; [ -n "$ACCESSO_FILE" ] && echo ok > "$ACCESSO_FILE"; exit 0 ;;
+esac

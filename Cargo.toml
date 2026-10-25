@@ -1,0 +1,22 @@
+[workspace]
+resolver = "3"
+members = ["crates/core", "crates/db", "crates/provider", "crates/server", "crates/worker"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.99"
+license = "MIT"
+publish = false
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+dbg_macro = "deny"
+
+# Le librerie di cifratura lente in debug: ottimizzate anche nei test.
+[profile.dev.package.argon2]
+opt-level = 3
+[profile.dev.package.sha2]
+opt-level = 3

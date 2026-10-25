@@ -1,0 +1,23 @@
+{"type":"thread.started","thread_id":"f3466615-9dc8-70a3-89c1-42a9c42e593f"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"clamping SessionEnd hook timeout to 3s in /Users/demo/.codex/plugins/cache/openai-codex/codex/1.0.6/hooks/hooks.json"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"ciao"}}
+{"type":"turn.completed","usage":{"input_tokens":18656,"cached_input_tokens":6656,"cache_write_input_tokens":0,"output_tokens":6,"reasoning_output_tokens":0}}
+{"type":"thread.started","thread_id":"48492f1a-c856-72cf-b1f2-f3d74c97e885"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"clamping SessionEnd hook timeout to 3s in /Users/demo/.codex/plugins/cache/openai-codex/codex/1.0.6/hooks/hooks.json"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"Leggo le istruzioni di memoria richieste, poi eseguo `ls` nella cartella corrente."}}
+{"type":"item.started","item":{"id":"item_2","type":"command_execution","command":"/bin/zsh -lc 'ls -la ~/appunti/user.md ~/appunti/feedback.md ~/appunti/tools.md && ls'","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_2","type":"command_execution","command":"/bin/zsh -lc 'ls -la ~/appunti/user.md ~/appunti/feedback.md ~/appunti/tools.md && ls'","aggregated_output":"ls: /Users/demo/appunti/feedback.md: No such file or directory\nls: /Users/demo/appunti/tools.md: No such file or directory\nls: /Users/demo/appunti/user.md: No such file or directory\n","exit_code":1,"status":"failed"}}
+{"type":"item.started","item":{"id":"item_3","type":"command_execution","command":"/bin/zsh -lc ls","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_3","type":"command_execution","command":"/bin/zsh -lc ls","aggregated_output":"file-di-prova.txt\n","exit_code":0,"status":"completed"}}
+{"type":"item.started","item":{"id":"item_4","type":"command_execution","command":"/bin/zsh -lc 'echo \"Eseguito ls nella cartella corrente; trovato file-di-prova.txt.\" >> appunti/sessione.md'","aggregated_output":"","exit_code":null,"status":"in_progress"}}
+{"type":"item.completed","item":{"id":"item_4","type":"command_execution","command":"/bin/zsh -lc 'echo \"Eseguito ls nella cartella corrente; trovato file-di-prova.txt.\" >> appunti/sessione.md'","aggregated_output":"zsh:1: no such file or directory: appunti/sessione.md\n","exit_code":1,"status":"failed"}}
+{"type":"item.completed","item":{"id":"item_5","type":"agent_message","text":"Il file presente è:\n\n`file-di-prova.txt`"}}
+{"type":"turn.completed","usage":{"input_tokens":76874,"cached_input_tokens":67840,"cache_write_input_tokens":0,"output_tokens":379,"reasoning_output_tokens":67}}
+{"type":"thread.started","thread_id":"48492f1a-c856-72cf-b1f2-f3d74c97e885"}
+{"type":"item.completed","item":{"id":"item_0","type":"error","message":"clamping SessionEnd hook timeout to 3s in /Users/demo/.codex/plugins/cache/openai-codex/codex/1.0.6/hooks/hooks.json"}}
+{"type":"turn.started"}
+{"type":"item.completed","item":{"id":"item_1","type":"agent_message","text":"Provo a eseguire `touch creato.txt`; l’ambiente attuale è però in sola lettura."}}
+{"type":"item.completed","item":{"id":"item_2","type":"agent_message","text":"Non ci sono riuscito: la cartella è in sola lettura.\n\nIl comando eseguito prima era:\n\n`ls`"}}
+{"type":"turn.completed","usage":{"input_tokens":116476,"cached_input_tokens":106752,"cache_write_input_tokens":0,"output_tokens":552,"reasoning_output_tokens":105}}

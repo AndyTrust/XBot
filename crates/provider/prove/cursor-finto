@@ -1,0 +1,71 @@
+#!/usr/bin/env python3
+"""Il `agent` (Cursor) finto delle prove di XBot.
+
+Legge il testo da stdin e ristampa il campione `cursor-stream-esempio.jsonl` (agent 2026.10.14):
+`system/init`, un `thinking`, il testo ricevuto rovesciato in tre `assistant` delta, il riepilogo
+e il `result` con `usage`. Parole chiave nel testo:
+  [fallisci]  scrive su stderr l'errore vero di Cursor (ActionRequiredError) ed esce con 1
+  [strumento] aggiunge le righe `tool_call` started/completed di `ls`
+  [negato]    aggiunge un `tool_call` completed con `result.rejected`
+  [lento]     aspetta 30 s dopo `init`
+  [argomenti] risponde con gli argomenti ricevuti (JSON) al posto del rovescio
+`--resume <id>` fa usare quell'id come `session_id`.
+"""
+import json, os, sys, time, uuid
+
+QUI = os.path.dirname(os.path.abspath(__file__))
+
+
+def argomento(nome):
+    a = sys.argv[1:]
+    return a[a.index(nome) + 1] if nome in a and a.index(nome) + 1 < len(a) else None
+
+
+def stampa(v):
+    sys.stdout.write(json.dumps(v, ensure_ascii=False) + "\n")
+    sys.stdout.flush()
+
+
+def main():
+    testo = sys.stdin.read()
+    with open(os.path.join(QUI, "cursor-stream-esempio.jsonl"), encoding="utf-8") as f:
+        campione = [json.loads(r) for r in f if r.strip()]
+    primo = lambda pred: next(dict(v) for v in campione if pred(v))
+    sid = argomento("--resume") or str(uuid.uuid4())
+    if "[fallisci]" in testo:
+        sys.stderr.write("ActionRequiredError: Codex 5.3 is not included in your weekly usage\n")
+        sys.exit(1)
+    init = primo(lambda v: v["type"] == "system")
+    init.update(session_id=sid, model=argomento("--model") or "Auto", argv=sys.argv[1:])
+    stampa(init)
+    if "[lento]" in testo:
+        time.sleep(30)
+    risposta = json.dumps(sys.argv[1:]) if "[argomenti]" in testo else testo.strip()[::-1]
+    t = primo(lambda v: v["type"] == "thinking" and v["subtype"] == "delta")
+    t["session_id"] = sid
+    stampa(t)
+    tc = [v for v in campione if v["type"] == "tool_call"]
+    if "[strumento]" in testo:
+        for v in tc:
+            if "rejected" not in json.dumps(v) and v["call_id"] == tc[0]["call_id"]:
+                v["session_id"] = sid
+                stampa(v)
+    if "[negato]" in testo:
+        rif = next(v for v in tc if "rejected" in json.dumps(v["tool_call"]))
+        for v in tc:
+            if v["call_id"] == rif["call_id"]:
+                v["session_id"] = sid
+                stampa(v)
+    n = max(1, -(-len(risposta) // 3))
+    for i in range(0, len(risposta), n):
+        time.sleep(0.02)
+        stampa({"type": "assistant", "message": {"role": "assistant", "content": [{"type": "text", "text": risposta[i:i + n]}]},
+                "session_id": sid, "timestamp_ms": int(time.time() * 1000)})
+    stampa({"type": "assistant", "message": {"role": "assistant", "content": [{"type": "text", "text": risposta}]}, "session_id": sid})
+    r = primo(lambda v: v["type"] == "result")
+    r.update(session_id=sid, result=risposta)
+    stampa(r)
+
+
+if __name__ == "__main__":
+    main()

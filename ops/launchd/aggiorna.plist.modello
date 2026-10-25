@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Scritto da installa.sh di XBot. Modello: ops/launchd/aggiorna.plist.modello -->
+<!-- Con XBOT_AGGIORNAMENTO=auto parte ogni giorno alle 04:00; con avvisa solo a richiesta
+     (launchctl kickstart, il bottone «Aggiorna ora» dell'app). -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>@ETICHETTA@.aggiorna</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>@SORGENTE@/installa.sh</string>
+    <string>--aggiorna</string>
+    <string>--si</string>
+  </array>
+  <key>WorkingDirectory</key><string>@SORGENTE@</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>@PATHAGG@</string>
+    <key>HOME</key><string>@HOME@</string>
+  </dict>
+@CALENDARIO@
+  <key>RunAtLoad</key><false/>
+  <key>ProcessType</key><string>Background</string>
+  <key>StandardOutPath</key><string>@DATI@/log/aggiorna.log</string>
+  <key>StandardErrorPath</key><string>@DATI@/log/aggiorna.log</string>
+</dict>
+</plist>

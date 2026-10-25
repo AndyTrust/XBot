@@ -1,0 +1,235 @@
+#!/usr/bin/env python3
+"""Il `claude` finto delle prove di XBot.
+
+Legge da stdin la riga utente `stream-json`, poi ristampa il campione registrato
+(`claude-stream-esempio.jsonl`, Claude Code 2.1.310) con il testo della risposta
+sostituito dal testo ricevuto rovesciato, in tre delta a 20 ms l'uno.
+
+Parole chiave nel testo:
+  [fallisci]  stampa un `result` con `is_error: true`
+  [strumento] aggiunge un blocco `tool_use` (Bash) e il suo `tool_result`
+  [lento]     aspetta 30 s prima di rispondere (per provare l'interruzione)
+  [muto]      non stampa nulla per 30 s (per provare il silenzio)
+  [crolla]    scrive su stderr ed esce con codice 3 senza `result`
+  [pid]       risponde «pid <pid> turno <n>» (per provare il processo caldo)
+
+Più righe utente sullo stesso stdin sono più turni dello stesso processo (Fase 2.G).
+
+Con `--mcp-config` (Fase 2.D) il finto fa da client MCP verso il server `xbot`:
+  [permesso]            chiama lo strumento `permesso` per Bash «echo ciao»: se allow stampa
+                        lo strumento e risponde «permesso concesso: <comando>», se deny
+                        risponde «permesso negato: <messaggio>»
+  [mcp:<nome> {json}]   chiama lo strumento <nome> con quegli argomenti e risponde con il testo
+  [ambiente:<NOME>]     risponde «<NOME> presente (<n> caratteri)» o «<NOME> assente»
+  [mcp-elenco]          risponde «server: a,b(auth)» con i server del --mcp-config (2.I)
+
+`--resume <id>` fa usare quell'id come `session_id`; `--model <m>` va nel `system/init`.
+"""
+import json
+import os
+import re
+import subprocess
+import sys
+import time
+import uuid
+
+QUI = os.path.dirname(os.path.abspath(__file__))
+
+
+def argomento(nome):
+    a = sys.argv[1:]
+    return a[a.index(nome) + 1] if nome in a and a.index(nome) + 1 < len(a) else None
+
+
+def stampa(v):
+    sys.stdout.write(json.dumps(v, ensure_ascii=False) + "\n")
+    sys.stdout.flush()
+
+
+class ClientMcp:
+    """Un client MCP minimo su stdio verso il server `xbot` del --mcp-config."""
+
+    def __init__(self, percorso):
+        with open(percorso, encoding="utf-8") as f:
+            cfg = json.load(f)["mcpServers"]["xbot"]
+        env = dict(os.environ)
+        env.update(cfg.get("env") or {})
+        self.p = subprocess.Popen([cfg["command"]] + cfg.get("args", []), stdin=subprocess.PIPE,
+                                  stdout=subprocess.PIPE, env=env, text=True)
+        self.n = 0
+        self.rpc("initialize", {"protocolVersion": "2025-06-18", "capabilities": {},
+                                "clientInfo": {"name": "claude-finto", "version": "1"}})
+        self.scrivi({"jsonrpc": "2.0", "method": "notifications/initialized"})
+
+    def scrivi(self, v):
+        self.p.stdin.write(json.dumps(v) + "\n")
+        self.p.stdin.flush()
+
+    def rpc(self, metodo, parametri):
+        self.n += 1
+        self.scrivi({"jsonrpc": "2.0", "id": self.n, "method": metodo, "params": parametri})
+        while True:
+            riga = self.p.stdout.readline()
+            if not riga:
+                raise RuntimeError("il server MCP ha chiuso")
+            v = json.loads(riga)
+            if v.get("id") == self.n:
+                if "error" in v:
+                    raise RuntimeError(json.dumps(v["error"]))
+                return v["result"]
+
+    def strumento(self, nome, argomenti):
+        r = self.rpc("tools/call", {"name": nome, "arguments": argomenti})
+        return "".join(b.get("text", "") for b in r.get("content", []))
+
+    def chiudi(self):
+        self.p.stdin.close()
+        self.p.wait(timeout=10)
+
+
+def con_mcp(testo, sid):
+    """La risposta del finto quando il testo chiede MCP o l'ambiente; None se non chiede nulla."""
+    parti = []
+    for nome in re.findall(r"\[ambiente:([A-Za-z_][A-Za-z0-9_]*)\]", testo):
+        v = os.environ.get(nome)
+        parti.append(f"{nome} presente ({len(v)} caratteri)" if v is not None else f"{nome} assente")
+    if "[mcp-elenco]" in testo:
+        cfg = argomento("--mcp-config")
+        if cfg:
+            with open(cfg) as f:
+                d = json.load(f).get("mcpServers", {})
+            voci = []
+            for k, v in d.items():
+                auth = any(h.lower() == "authorization" for h in (v.get("headers") or {}))
+                voci.append(k + ("(auth)" if auth else ""))
+            parti.append("server: " + ",".join(sorted(voci)))
+        else:
+            parti.append("nessun --mcp-config")
+    chiamate = re.findall(r"\[mcp:(\w+)\s*(\{.*?\})?\]", testo)
+    permesso = "[permesso]" in testo
+    config = argomento("--mcp-config")
+    if (chiamate or permesso) and not config:
+        parti.append("nessun --mcp-config")
+    elif chiamate or permesso:
+        c = ClientMcp(config)
+        try:
+            for nome, arg in chiamate:
+                parti.append(c.strumento(nome, json.loads(arg) if arg else {}))
+            if permesso:
+                inp = {"command": "echo ciao", "description": "prova"}
+                strumento_inizio(sid)
+                r = json.loads(c.strumento("permesso", {"tool_name": "Bash", "input": inp, "tool_use_id": "toolu_finto01"}))
+                if r.get("behavior") == "allow":
+                    strumento_fine(sid, "ciao", False)
+                    parti.append("permesso concesso: " + r["updatedInput"]["command"])
+                else:
+                    strumento_fine(sid, r.get("message", ""), True)
+                    parti.append("permesso negato: " + r.get("message", ""))
+        finally:
+            c.chiudi()
+    return " | ".join(parti) if parti else None
+
+
+def tre_pezzi(t):
+    n = max(1, -(-len(t) // 3))
+    return [t[i:i + n] for i in range(0, len(t), n)] or [""]
+
+
+def main():
+    """Una riga utente per turno sullo stesso stdin (processo caldo, Fase 2.G): il processo
+    resta vivo finché stdin non si chiude. `total_cost_usd` è cumulativo come nel client vero."""
+    sid = argomento("--resume") or str(uuid.uuid4())
+    n = 0
+    for riga in sys.stdin:
+        if not riga.strip():
+            continue
+        n += 1
+        turno(riga, sid, n)
+
+
+def turno(riga, sid, n):
+    contenuto = json.loads(riga)["message"]["content"]
+    if isinstance(contenuto, list):
+        contenuto = "".join(b.get("text", "") for b in contenuto)
+    testo = contenuto
+    rovescio = testo[::-1]
+    if "[pid]" in testo:
+        rovescio = f"pid {os.getpid()} turno {n}"
+    modello = argomento("--model") or "claude-haiku-5-5"
+    with open(os.path.join(QUI, "claude-stream-esempio.jsonl"), encoding="utf-8") as f:
+        campione = [json.loads(r) for r in f if r.strip()]
+
+    if "[crolla]" in testo:
+        sys.stderr.write("errore finto: credenziali mancanti\n")
+        sys.exit(3)
+    if "[muto]" in testo:
+        time.sleep(30)
+    da_mcp = None
+
+    for v in campione:
+        if "session_id" in v:
+            v["session_id"] = sid
+        tipo = v.get("type")
+        if tipo == "system" and v.get("subtype") == "init":
+            v["model"] = modello
+            v["argv"] = sys.argv[1:]
+            stampa(v)
+            if "[lento]" in testo:
+                time.sleep(30)
+            da_mcp = con_mcp(testo, sid)
+            if da_mcp is not None:
+                rovescio = da_mcp
+            if "[fallisci]" in testo:
+                stampa({"type": "result", "subtype": "error_during_execution", "is_error": True,
+                        "result": "errore finto su richiesta", "session_id": sid})
+                return
+            continue
+        if tipo == "system" and v.get("subtype") == "status" and "[strumento]" in testo:
+            stampa(v)
+            strumento(sid)
+            continue
+        if tipo == "stream_event":
+            e = v["event"]
+            if e.get("type") == "content_block_delta" and e["delta"].get("type") == "text_delta":
+                for pezzo in tre_pezzi(rovescio):
+                    time.sleep(0.02)
+                    e["delta"]["text"] = pezzo
+                    stampa(v)
+                continue
+        if tipo == "assistant":
+            v["message"]["content"] = [{"type": "text", "text": rovescio}]
+        if tipo == "result":
+            v["result"] = rovescio
+            if "total_cost_usd" in v:
+                v["total_cost_usd"] = v["total_cost_usd"] * n
+        stampa(v)
+
+
+def strumento(sid):
+    strumento_inizio(sid)
+    strumento_fine(sid, "ciao", False)
+
+
+def strumento_inizio(sid):
+    tid = "toolu_finto01"
+    base = {"session_id": sid, "parent_tool_use_id": None}
+    stampa({"type": "stream_event", "event": {"type": "message_start", "message": {"role": "assistant"}}, **base})
+    stampa({"type": "stream_event", "event": {"type": "content_block_start", "index": 0, "content_block":
+            {"type": "tool_use", "id": tid, "name": "Bash", "input": {}}}, **base})
+    for p in ['{"command": "ec', 'ho ciao", "description": "prova"}']:
+        stampa({"type": "stream_event", "event": {"type": "content_block_delta", "index": 0, "delta":
+                {"type": "input_json_delta", "partial_json": p}}, **base})
+    stampa({"type": "assistant", "message": {"role": "assistant", "content": [
+        {"type": "tool_use", "id": tid, "name": "Bash", "input": {"command": "echo ciao"}}]}, **base})
+    stampa({"type": "stream_event", "event": {"type": "content_block_stop", "index": 0}, **base})
+    stampa({"type": "stream_event", "event": {"type": "message_stop"}, **base})
+
+
+def strumento_fine(sid, esito, errore):
+    base = {"session_id": sid, "parent_tool_use_id": None}
+    stampa({"type": "user", "message": {"role": "user", "content": [
+        {"type": "tool_result", "tool_use_id": "toolu_finto01", "content": esito, "is_error": errore}]}, **base})
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,4 @@
+-- Migrazione 013 (2026-10-25): nessuna modifica allo schema.
+-- Due personaggi di web/avatar/personaggi/ hanno cambiato nome nei file (ora «maggiordomo-classic»
+-- e «maggiordomo-maranza»). I database creati prima che usano i nomi di prima si aggiornano a mano
+-- con l'UPDATE di `assistente.avatar_forma` scritto nella procedura di rilascio (VPS.md).

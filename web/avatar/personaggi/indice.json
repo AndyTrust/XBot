@@ -1,0 +1,162 @@
+[
+ {
+  "nome": "avvocato",
+  "file": "avvocato.webp",
+  "etichetta": "Avvocato"
+ },
+ {
+  "nome": "commercialista",
+  "file": "commercialista.webp",
+  "etichetta": "Commercialista"
+ },
+ {
+  "nome": "consulente-del-lavoro",
+  "file": "consulente-del-lavoro.webp",
+  "etichetta": "Consulente del lavoro"
+ },
+ {
+  "nome": "finocchietto",
+  "file": "finocchietto.webp",
+  "etichetta": "Finocchietto"
+ },
+ {
+  "nome": "generico-blue",
+  "file": "generico-blue.webp",
+  "etichetta": "Generico blu"
+ },
+ {
+  "nome": "generico-mint",
+  "file": "generico-mint.webp",
+  "etichetta": "Generico menta"
+ },
+ {
+  "nome": "generico-orange",
+  "file": "generico-orange.webp",
+  "etichetta": "Generico arancio"
+ },
+ {
+  "nome": "generico-purple",
+  "file": "generico-purple.webp",
+  "etichetta": "Generico viola"
+ },
+ {
+  "nome": "maggiordomo-classic",
+  "file": "maggiordomo-classic.webp",
+  "etichetta": "Maggiordomo classico"
+ },
+ {
+  "nome": "maggiordomo-maranza",
+  "file": "maggiordomo-maranza.webp",
+  "etichetta": "Maggiordomo maranza"
+ },
+ {
+  "nome": "manutentore",
+  "file": "manutentore.webp",
+  "etichetta": "Manutentore"
+ },
+ {
+  "nome": "marketing",
+  "file": "marketing.webp",
+  "etichetta": "Marketing"
+ },
+ {
+  "nome": "notaio",
+  "file": "notaio.webp",
+  "etichetta": "Notaio"
+ },
+ {
+  "nome": "nuovo-architetto",
+  "file": "nuovo-architetto.png",
+  "etichetta": "Architetto"
+ },
+ {
+  "nome": "nuovo-carpentiere",
+  "file": "nuovo-carpentiere.png",
+  "etichetta": "Carpentiere"
+ },
+ {
+  "nome": "nuovo-chef",
+  "file": "nuovo-chef.png",
+  "etichetta": "Chef"
+ },
+ {
+  "nome": "nuovo-dottore",
+  "file": "nuovo-dottore.png",
+  "etichetta": "Dottore"
+ },
+ {
+  "nome": "nuovo-elettricista",
+  "file": "nuovo-elettricista.png",
+  "etichetta": "Elettricista"
+ },
+ {
+  "nome": "nuovo-fitness-guru",
+  "file": "nuovo-fitness-guru.png",
+  "etichetta": "Fitness guru"
+ },
+ {
+  "nome": "nuovo-hacker",
+  "file": "nuovo-hacker.png",
+  "etichetta": "Hacker"
+ },
+ {
+  "nome": "nuovo-idraulico",
+  "file": "nuovo-idraulico.png",
+  "etichetta": "Idraulico"
+ },
+ {
+  "nome": "nuovo-meccanico",
+  "file": "nuovo-meccanico.png",
+  "etichetta": "Meccanico"
+ },
+ {
+  "nome": "nuovo-muratore",
+  "file": "nuovo-muratore.png",
+  "etichetta": "Muratore"
+ },
+ {
+  "nome": "nuovo-personal-trainer",
+  "file": "nuovo-personal-trainer.png",
+  "etichetta": "Personal trainer"
+ },
+ {
+  "nome": "nuovo-professore",
+  "file": "nuovo-professore.png",
+  "etichetta": "Professore"
+ },
+ {
+  "nome": "nuovo-psicologo",
+  "file": "nuovo-psicologo.png",
+  "etichetta": "Psicologo"
+ },
+ {
+  "nome": "nuovo-travel-planner",
+  "file": "nuovo-travel-planner.png",
+  "etichetta": "Travel planner"
+ },
+ {
+  "nome": "nuovo-veterinario",
+  "file": "nuovo-veterinario.png",
+  "etichetta": "Veterinario"
+ },
+ {
+  "nome": "nuovo-wellness-coach",
+  "file": "nuovo-wellness-coach.png",
+  "etichetta": "Wellness coach"
+ },
+ {
+  "nome": "postino",
+  "file": "postino.webp",
+  "etichetta": "Postino"
+ },
+ {
+  "nome": "ricercatore-web",
+  "file": "ricercatore-web.webp",
+  "etichetta": "Ricercatore web"
+ },
+ {
+  "nome": "social",
+  "file": "social.png",
+  "etichetta": "Social"
+ }
+]

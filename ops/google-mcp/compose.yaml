@@ -1,0 +1,36 @@
+# Il server Google (Gmail, Drive, Calendar) accanto a XBot. Caddy lo raggiunge per nome
+# (xbot-google-mcp:8000) sulla rete Docker di spj-caddy; la porta 127.0.0.1:18851 serve solo per
+# le prove dall'host. Passi in LEGGIMI.md.
+#
+#   XBOT_RETE_CADDY=<rete di spj-caddy> docker compose up -d --build
+name: xbot-google-mcp
+services:
+  google-mcp:
+    build:
+      context: .
+      args:
+        WORKSPACE_MCP_VERSIONE: "2.1.0"
+    image: xbot-google-mcp:2.1.0
+    container_name: xbot-google-mcp
+    restart: unless-stopped
+    env_file:
+      - ./google-mcp.env
+    ports:
+      - "127.0.0.1:18851:8000"
+    volumes:
+      - dati:/dati
+    networks:
+      - caddy
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  dati:
+
+networks:
+  caddy:
+    external: true
+    name: ${XBOT_RETE_CADDY:?scrivi il nome della rete Docker di spj-caddy in XBOT_RETE_CADDY}

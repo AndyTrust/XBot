@@ -1,0 +1,15 @@
+[Unit]
+Description=XBot: ponte fra la rete di Reason e XBot (sessione xbot-dsh, utente reason)
+After=network-online.target xbot.service
+
+[Service]
+User=reason
+WorkingDirectory=/home/reason/xbot
+Environment=XBOT_CANALE_TOKEN_FILE=/home/reason/xbot/canale.txt
+Environment=REASON_NETWORK_BIN=/home/reason/.reason/bin/reason-network
+ExecStart=/usr/bin/python3 -u /opt/xbot/ponte-rete/ponte_rete.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

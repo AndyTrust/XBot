@@ -1,0 +1,20 @@
+# Percorsi del repository di lavoro che non entrano nell'albero pubblico.
+# Formato: un percorso per riga, relativo alla radice, poi «#» e il motivo.
+# Un percorso che finisce con «/» è una cartella; «*» e «?» valgono come nella shell
+# e non attraversano le cartelle («crates/*/x» non prende «crates/a/b/x»).
+# Lo legge ops/pubblica/prepara_pubblico.py, dall'albero di HEAD.
+
+.cargo/                              # configurazione di cargo della macchina di lavoro (target-dir assoluto)
+.claude/                             # quaderni e impostazioni degli agenti di sviluppo
+CONTRATTO-*.md                       # contratti di fase fra gli agenti, con dati della macchina di lavoro
+MEMORIA.md                           # memoria condivisa delle sessioni di lavoro
+CLAUDE.md                            # guida locale per Claude Code (importa l'AGENTS.md interno)
+GEMINI.md                            # guida locale per Gemini (importa l'AGENTS.md interno)
+AGENTS.md.prima*                     # copie vecchie della guida
+ops/posta/                           # caselle e server di posta dell'autore
+ops/n8n-posta/                       # flussi n8n legati alle caselle dell'autore
+ops/n8n-xbot/                        # flussi n8n e script legati al server dell'autore
+ops/pubblica/parole_vietate.txt      # contiene i dati personali da cercare: non si pubblica
+web/loghi/                           # loghi dei servizi, marchi di terzi (decisione D4; --con-loghi li tiene)
+web/prove/                           # prove dell'interfaccia con dati e percorsi della macchina di lavoro
+voce/prova_parlato.py                # prova della voce con testi personali

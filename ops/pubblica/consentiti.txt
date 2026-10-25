@@ -1,0 +1,5 @@
+# Eccezioni documentate ai controlli delle parole vietate di prepara_pubblico.py.
+# Formato: <percorso>  <parola>  # motivo. Il percorso è esatto (relativo alla radice).
+# Un'eccezione vale solo per quella parola in quel file.
+crates/db/src/cassaforte.rs  plancia   # etichette crittografiche dei dati cifrati: cambiarle rende illeggibile la cassaforte esistente
+crates/server/src/stato.rs   plancia   # sale del TOTP: cambiarlo invalida il secondo fattore esistente

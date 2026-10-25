@@ -1,0 +1,385 @@
+{
+  "_nota": "Come la voce di XBot legge sigle, abbreviazioni, parole inglesi, nomi e unità. Regola del progetto (2026-10-05): parole per intero, mai sigle; le sigle che in italiano si dicono come parola restano parola (iva, pec, Inps). Si aggiorna qui senza toccare il codice: la voce lo rilegge al riavvio. COME SI AGGIUNGE: una sigla in 'sigle' (maiuscole esatte, parola intera) con il testo detto, oppure {testo, genere m/f, singolare, plurale} se l'articolo davanti deve accordarsi (la VPS -> il server privato virtuale); una sigla che si dice come parola va scritta minuscola o con la sola iniziale. 'abbreviazioni': forma corta -> parola intera, ovunque nel testo. 'inglesi': parola -> grafia che la voce legge come un italiano; null = letta già bene. 'nomi': nomi propri difficili. 'unita': dopo un numero, [forma per 1, forma plurale]. 'frasi': sostituzioni letterali fatte per prime. 'siti': host -> nome detto a voce al posto dell'indirizzo. Voci personali: voce/sigle.locali.json (facoltativo, non versionato, stesse sezioni; le sue voci vincono).",
+  "frasi": {
+    "24/7": "ventiquattro ore su ventiquattro",
+    "P.IVA": "partita IVA",
+    "P. IVA": "partita IVA",
+    "S.r.l.": "esse erre elle",
+    "s.r.l.": "esse erre elle",
+    "S.p.A.": "esse pi a",
+    "N.B.": "nota bene",
+    "es.": "per esempio",
+    "tel.": "telefono",
+    "n°": "numero",
+    "N°": "numero"
+  },
+  "abbreviazioni": {
+    "ecc.": "eccetera",
+    "etc.": "eccetera",
+    "scontr.": "scontrino",
+    "sc.": "scontrino",
+    "q.tà": "quantità",
+    "qtà": "quantità",
+    "tot.": "totale",
+    "tot": "totale",
+    "vs.": "rispetto a",
+    "vs": "rispetto a",
+    "cop.": "coperti",
+    "cop": "coperti",
+    "pz.": "pezzi",
+    "pz": "pezzi",
+    "gg": "giorni",
+    "sett.": "settimana",
+    "dom.": "domenica",
+    "lun.": "lunedì",
+    "mart.": "martedì",
+    "merc.": "mercoledì",
+    "giov.": "giovedì",
+    "ven.": "venerdì",
+    "sab.": "sabato",
+    "pag.": "pagina",
+    "p.es.": "per esempio",
+    "cad.": "ciascuno",
+    "cad": "ciascuno",
+    "rif.": "riferimento",
+    "cfr.": "confronta",
+    "art.": "articolo",
+    "prof.": "professor",
+    "dott.": "dottor",
+    "sig.": "signor",
+    "sig.ra": "signora",
+    "nr.": "numero",
+    "num.": "numero"
+  },
+  "sigle": {
+    "CRM": {
+      "testo": "gestionale clienti",
+      "genere": "m"
+    },
+    "VPS": {
+      "testo": "server privato virtuale",
+      "genere": "m",
+      "plurale": "server privati virtuali"
+    },
+    "API": {
+      "testo": "interfaccia di programmazione",
+      "genere": "f",
+      "plurale": "interfacce di programmazione"
+    },
+    "PDF": {
+      "testo": "documento pi di effe",
+      "genere": "m",
+      "plurale": "documenti pi di effe"
+    },
+    "IVA": "iva",
+    "PEC": "pec",
+    "SDI": {
+      "testo": "sistema di interscambio",
+      "genere": "m"
+    },
+    "SdI": {
+      "testo": "sistema di interscambio",
+      "genere": "m"
+    },
+    "KPI": {
+      "testo": "indicatori chiave",
+      "genere": "m",
+      "singolare": "indicatore chiave",
+      "plurale": "indicatori chiave"
+    },
+    "AI": {
+      "testo": "intelligenza artificiale",
+      "genere": "f"
+    },
+    "IA": {
+      "testo": "intelligenza artificiale",
+      "genere": "f"
+    },
+    "SSH": {
+      "testo": "connessione sicura",
+      "genere": "f"
+    },
+    "CPU": {
+      "testo": "processore",
+      "genere": "m",
+      "plurale": "processori"
+    },
+    "RAM": {
+      "testo": "memoria di lavoro",
+      "genere": "f"
+    },
+    "GB": {
+      "testo": "gigabyte",
+      "genere": "m"
+    },
+    "MB": {
+      "testo": "megabyte",
+      "genere": "m"
+    },
+    "TB": {
+      "testo": "terabyte",
+      "genere": "m"
+    },
+    "MY140": "My centoquaranta Grammi",
+    "My140": "My centoquaranta Grammi",
+    "n8n": "enne otto enne",
+    "Odoo": "Odù",
+    "OK": "okay",
+    "CEO": {
+      "testo": "amministratore delegato",
+      "genere": "m",
+      "plurale": "amministratori delegati"
+    },
+    "SEO": {
+      "testo": "posizionamento sui motori di ricerca",
+      "genere": "m"
+    },
+    "SMS": {
+      "testo": "messaggi",
+      "genere": "m",
+      "singolare": "messaggio",
+      "plurale": "messaggi"
+    },
+    "URL": {
+      "testo": "indirizzo web",
+      "genere": "m",
+      "plurale": "indirizzi web"
+    },
+    "PC": {
+      "testo": "computer",
+      "genere": "m"
+    },
+    "UE": {
+      "testo": "Unione Europea",
+      "genere": "f"
+    },
+    "USA": {
+      "testo": "Stati Uniti",
+      "genere": "m",
+      "singolare": "Stati Uniti",
+      "plurale": "Stati Uniti"
+    },
+    "NB": "nota bene",
+    "FAQ": {
+      "testo": "domande frequenti",
+      "genere": "f",
+      "singolare": "domanda frequente",
+      "plurale": "domande frequenti"
+    },
+    "SRL": "esse erre elle",
+    "CF": {
+      "testo": "codice fiscale",
+      "genere": "m"
+    },
+    "DDT": {
+      "testo": "documento di trasporto",
+      "genere": "m",
+      "plurale": "documenti di trasporto"
+    },
+    "INPS": "Inps",
+    "INAIL": "Inail",
+    "POS": "pos",
+    "TV": {
+      "testo": "televisione",
+      "genere": "f"
+    },
+    "WP": "WordPress",
+    "VNC": {
+      "testo": "desktop remoto",
+      "genere": "m"
+    },
+    "OTP": {
+      "testo": "codice temporaneo",
+      "genere": "m",
+      "plurale": "codici temporanei"
+    },
+    "TOTP": {
+      "testo": "codice temporaneo",
+      "genere": "m",
+      "plurale": "codici temporanei"
+    },
+    "IP": {
+      "testo": "indirizzo di rete",
+      "genere": "m",
+      "plurale": "indirizzi di rete"
+    },
+    "LLM": {
+      "testo": "modello linguistico",
+      "genere": "m",
+      "plurale": "modelli linguistici"
+    },
+    "TTS": {
+      "testo": "sintesi vocale",
+      "genere": "f"
+    },
+    "UTC": {
+      "testo": "ora universale",
+      "genere": "f"
+    },
+    "CEST": {
+      "testo": "ora legale italiana",
+      "genere": "f"
+    },
+    "GPS": {
+      "testo": "navigatore satellitare",
+      "genere": "m"
+    },
+    "Wi-Fi": "uai fai",
+    "WiFi": "uai fai",
+    "B&B": "bed and breakfast",
+    "ASL": "asl",
+    "FIAT": "Fiat",
+    "COVID": "covid",
+    "NATO": "Nato",
+    "ONU": "Onu",
+    "ISTAT": "Istat",
+    "IMU": "imu",
+    "IRPEF": "irpef",
+    "TARI": "tari",
+    "DURC": "durc",
+    "SUAP": "suap",
+    "CAF": "caf",
+    "RAI": "Rai",
+    "F24": "effe ventiquattro"
+  },
+  "inglesi": {
+    "report": null,
+    "backup": null,
+    "email": null,
+    "mail": null,
+    "server": null,
+    "link": null,
+    "password": null,
+    "meeting": null,
+    "budget": null,
+    "team": null,
+    "chat": null,
+    "online": null,
+    "offline": null,
+    "login": null,
+    "app": null,
+    "web": null,
+    "computer": null,
+    "software": null,
+    "hardware": null,
+    "download": null,
+    "upload": null,
+    "cloud": null,
+    "widget": null,
+    "bug": null,
+    "feedback": null,
+    "marketing": null,
+    "social": null,
+    "post": null,
+    "newsletter": null,
+    "brand": null,
+    "business": null,
+    "manager": null,
+    "weekend": null,
+    "check": null,
+    "delivery": null,
+    "food": null,
+    "cost": null,
+    "top": null,
+    "target": null,
+    "trend": null,
+    "database": null,
+    "dashboard": null,
+    "update": null,
+    "default": null,
+    "browser": null,
+    "account": null,
+    "booking": null,
+    "jet": null,
+    "privacy": null,
+    "partner": null,
+    "staff": null,
+    "break": null,
+    "brunch": null,
+    "drink": null,
+    "menu": null,
+    "file": "fail"
+  },
+  "nomi": {
+    "S24": "telefono"
+  },
+  "unita": {
+    "km/h": [
+      "un chilometro orario",
+      "chilometri orari"
+    ],
+    "km": [
+      "un chilometro",
+      "chilometri"
+    ],
+    "kg": [
+      "un chilo",
+      "chili"
+    ],
+    "cm": [
+      "un centimetro",
+      "centimetri"
+    ],
+    "GB": [
+      "un gigabyte",
+      "gigabyte"
+    ],
+    "MB": [
+      "un megabyte",
+      "megabyte"
+    ],
+    "TB": [
+      "un terabyte",
+      "terabyte"
+    ],
+    "h": [
+      "un'ora",
+      "ore"
+    ],
+    "min": [
+      "un minuto",
+      "minuti"
+    ],
+    "°C": [
+      "un grado",
+      "gradi"
+    ],
+    "cop": [
+      "un coperto",
+      "coperti"
+    ],
+    "pz": [
+      "un pezzo",
+      "pezzi"
+    ],
+    "gg": [
+      "un giorno",
+      "giorni"
+    ],
+    "sec": [
+      "un secondo",
+      "secondi"
+    ],
+    "s": [
+      "un secondo",
+      "secondi"
+    ],
+    "ms": [
+      "un millisecondo",
+      "millisecondi"
+    ]
+  },
+  "siti": {
+    "github.com": "GitHub",
+    "docs.claude.com": "Claude",
+    "claude.ai": "Claude",
+    "claude.com": "Claude",
+    "anthropic.com": "Anthropic",
+    "google.com": "Google",
+    "youtube.com": "YouTube",
+    "hostinger.com": "Hostinger",
+    "fish.audio": "fish audio",
+    "x.com": "X",
+    "vercel.app": "Vercel"
+  }
+}

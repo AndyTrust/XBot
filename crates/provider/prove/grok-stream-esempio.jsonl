@@ -1,0 +1,196 @@
+{"type":"thought","data":"Risponderò solo con "}
+{"type":"thought","data":"la parola \"ciao\"."}
+{"type":"text","data":"ciao"}
+{"type":"usage","usage":{"input_tokens":26344,"output_tokens":45,"cache_read_input_tokens":6016,"cache_creation_input_tokens":0,"reasoning_tokens":44},"signature":"yA4EH/fYFY18abtDwDfzhOyK5fiAhpyua0KIFkhVgIkjJ1wjOOR6iOr9CELBONhDLndP3KdTjoTB6x6oTrBn4nBbrVqJbmjgiU2uS4yL+m76IpMJUhOUky5ObvIPoHW66CqjMxFvnft6nrbb9PtdLZt1sp8LEQ9E+QeW1lY0TUhqLieh6K3/d8zH8qaAyXaNCbsHPeEwQcWqdz4EmuNz5/B7+fko5VW2YME4r35Zqwm8Jhd5wfEfi97qxzPRvPFqQSOfPoC3pmD8bwfYTYUafclkuwhCCNSS"}
+{"type":"end","stopReason":"end_turn","sessionId":"593bc136-9a8f-4e6b-a833-d8b597eff5ff","requestId":"551c63e1-555e-4315-b146-241edbd82636","cwd":"/Users/demo/prova","usage":{"input_tokens":26344,"cache_read_input_tokens":6016,"cache_creation_input_tokens":0,"output_tokens":45,"reasoning_tokens":44,"total_tokens":32405},"num_turns":1,"total_cost_usd":0.018619352,"total_cost_usd_ticks":186193520,"modelUsage":{"grok-4.5-build":{"inputTokens":26344,"outputTokens":45,"cacheReadInputTokens":6016,"cacheCreationInputTokens":0,"modelCalls":1,"costUSD":0.018619352}}}
+{"type":"thought","data":"Eseguirò il comando "}
+{"type":"thought","data":"`ls` per elencare i "}
+{"type":"thought","data":"file nella cartella "}
+{"type":"thought","data":"corrente."}
+{"type":"thought","data":"\n\nSto valutando se rispettare"}
+{"type":"thought","data":" la regola del saluto"}
+{"type":"thought","data":" iniziale o eseguire"}
+{"type":"thought","data":" subito il comando richiesto."}
+{"type":"text","data":"Ciao"}
+{"type":"text","data":" Mario"}
+{"type":"text","data":"."}
+{"type":"text","data":" E"}
+{"type":"text","data":"segu"}
+{"type":"text","data":"o"}
+{"type":"text","data":" subito"}
+{"type":"text","data":" `"}
+{"type":"text","data":"ls"}
+{"type":"text","data":"`"}
+{"type":"text","data":" in"}
+{"type":"text","data":" questa"}
+{"type":"text","data":" cart"}
+{"type":"text","data":"ella"}
+{"type":"text","data":"."}
+{"type":"usage","usage":{"input_tokens":23021,"output_tokens":296,"cache_read_input_tokens":9344,"cache_creation_input_tokens":0,"reasoning_tokens":258},"signature":"ssrC/7w7f180ek9+KQp4sUGGImkZbuwX4ttO4UvDPKTSSNB5SxXbCE0y/IMqUSCkeo7GuVB0giE9oK2wMJbIrfhzmoSmkXSjCxJ8OjrlKX+l45bhyF81jaeKrVw7Sr2alT6B5w68f3nmOlZP8xATkFkX5BnjdUVeYvblR0zE8TX8TnFOlV05v6M7mlAni7cp+hwrgIqqszf5/BJfZanYwRjbhsrbApXqRA7ONaSzz7eQedtXBmxdrkcofgcX5oSfCLV4DctlUaC4oEBbUQJX7YXMdQrqcrAHRNnf8F7+MPdCpqRBB9cLo05bIx9J3usDMQg/gypSXrj2cyax3Sd/D01yqybD7ypBDxePnUDCXvX2A4mMGLqEI0CbXkU3EfumOZLQs3YbvbP96b4dkSo02czwFNBG0B2ZuXMHnivNXE4igpvu62xXPRDxQs5YsQDOczxG8J6E2iLzay5hF0k6raFiUPFJ+B7voMqkdeHL2UuBP9kgwWeuAg9QAO/ZSE7dMKPkSrTRirHAmYrOvpFyKortS8x8K0iteCIqNp97tpDOVK4RoE5jjIr+kJ9AombKFUZR4ShaX9ocOz2lpHCsAz3TIQvPDOiN19J8+q1bl5MExJPOzxPWRjGTNfp4u2fGfhz/rSRlriC7btXmRbqB+fesjanUBzH1T9Pfi68x6BtB8gZhYCF2++9vp+SziCi7R2hD37azc2xeZ6rQdCAQlX0Cf7GrCUmAW/fRHiN83WuaM7Qq5OhEd7MJF6AiVK9RDdBME/npjrEjte4MIdwhaGyCXr8o+FPFf5gVlDdwBGuFXZtbN3ox9TT+E1LWi3ThocZKaRyL+naDHwikjybW+BZy6PXa5CJipydu5FX5+maA/YLz7ZXy58jc8b8j8+1qsMH64w/2ruHltPgxjux6rtgB6+d36CmGvN2p1ihWO6nVZYF/Bmh7cwUgR1udlWiXw3p9blEX4jlvzDkD6OiUlweoz1HADDrqSE1CpzrcAfWxcwoDzcNfCXABIof1/BFEs5x1dwxTQooyTzoOLglzV9v6kN+AQH2L1/TWEdtS5nLvEgeRnvNgFTc+dP2CMvqHjYXmMw8kdn2u9Dvv1LnC2VNqDwTFcCE5/FFGNLw+uNcB1grG3uQxcHBvVrLXWDtmbzh6MTaH50LdaV4puGuvw4mBJPBKfe6EGMUNz6zlGOivm7wUfjahcPePaH4xVWOSRuCML1kexYJqogMYcy4NfmeZQVhMjabGIMkMFVRY59wS4w8HOGx19wu1jK71A0IEuRL93Svbp8M+ZsygTyyPPyJJV6MiuJ8/L313fZoY5hCJJGf//PHVlR31l+CAzuMnkEDFTzX6xx/i+lFlCAnPdOlH06ubw+2mbVOONk7z7ph7t5Rg6dxvDMWofKQ8CmlKkXzVgiD1K0LHP95EQkSOxI1TvDchMx5VJOqwLW+JbfGSiBu4BReQFWLSV1Z3ALfDp3qlL0zpujIprIMfg8IvC52DtI0gQiAQ6s6/zjJiTVn7fjIcqKFbnasOu/9EYjQm5XY9UDRguRUM0g0n3ffS1fkHkd4J6iaW5E1NM71nUtIWBwACaapoRO3gpFugKHc4PwIekkuJwjuC70WCZfgzyA27eKItXmyN"}
+{"type":"tool_call","toolCallId":"call-a62256fa-6d8c-4b2f-88c7-30a9fe0155d5-0","title":"run_terminal_command","kind":"execute","status":"pending","toolName":"run_terminal_command","rawInput":{"command":"ls -la","description":"List files in current workspace"},"content":[],"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-a62256fa-6d8c-4b2f-88c7-30a9fe0155d5-0","status":null,"content":[{"type":"content","content":{"type":"text","text":"List files in current workspace"}}],"rawOutput":null,"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-a62256fa-6d8c-4b2f-88c7-30a9fe0155d5-0","status":"in_progress","content":[{"type":"content","content":{"type":"text","text":""}}],"rawOutput":{"type":"Bash","output":[],"output_for_prompt":"","exit_code":0,"command":"ls -la","truncated":false,"signal":null,"timed_out":false,"description":null,"current_dir":"/Users/demo/prova","output_file":"","total_bytes":0},"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-a62256fa-6d8c-4b2f-88c7-30a9fe0155d5-0","status":"in_progress","content":[{"type":"content","content":{"type":"text","text":"total 72\ndrwx------@    6 demo  wheel    192 Oct 25 05:49 \u001b[34m.\u001b[39;49m\u001b[0m\ndrwxrwxrwt  1829 root             wheel  58528 Oct 25 05:49 \u001b[30m\u001b[42m..\u001b[39;49m\u001b[0m\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:48 a.err\n-rw-r--r--@    1 demo  wheel  15646 Oct 25 05:49 a.jsonl\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:49 b.err\n-rw-r--r--@    1 demo  wheel  18085 Oct 25 05:49 b.jsonl\n"}}],"rawOutput":{"type":"Bash","output":[116,111,116,97,108,32,55,50,10,100,114,119,120,45,45,45,45,45,45,64,32,32,32,32,54,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,32,32,49,57,50,32,79,99,116,32,50,53,32,48,53,58,52,57,32,27,91,51,52,109,46,27,91,51,57,59,52,57,109,27,91,48,109,10,100,114,119,120,114,119,120,114,119,116,32,32,49,56,50,57,32,114,111,111,116,32,32,32,32,32,32,32,32,32,32,32,32,32,119,104,101,101,108,32,32,53,56,53,50,56,32,79,99,116,32,50,53,32,48,53,58,52,57,32,27,91,51,48,109,27,91,52,50,109,46,46,27,91,51,57,59,52,57,109,27,91,48,109,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,32,32,32,32,48,32,79,99,116,32,50,53,32,48,53,58,52,56,32,97,46,101,114,114,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,49,53,54,52,54,32,79,99,116,32,50,53,32,48,53,58,52,57,32,97,46,106,115,111,110,108,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,32,32,32,32,48,32,79,99,116,32,50,53,32,48,53,58,52,57,32,98,46,101,114,114,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,49,56,48,56,53,32,79,99,116,32,50,53,32,48,53,58,52,57,32,98,46,106,115,111,110,108,10],"output_for_prompt":"total 72\ndrwx------@    6 demo  wheel    192 Oct 25 05:49 .\ndrwxrwxrwt  1829 root             wheel  58528 Oct 25 05:49 ..\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:48 a.err\n-rw-r--r--@    1 demo  wheel  15646 Oct 25 05:49 a.jsonl\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:49 b.err\n-rw-r--r--@    1 demo  wheel  18085 Oct 25 05:49 b.jsonl\n","exit_code":0,"command":"ls -la","truncated":false,"signal":null,"timed_out":false,"description":null,"current_dir":"/Users/demo/prova","output_file":"","total_bytes":441},"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-a62256fa-6d8c-4b2f-88c7-30a9fe0155d5-0","status":"completed","content":[{"type":"content","content":{"type":"text","text":"total 72\ndrwx------@    6 demo  wheel    192 Oct 25 05:49 \u001b[34m.\u001b[39;49m\u001b[0m\ndrwxrwxrwt  1829 root             wheel  58528 Oct 25 05:49 \u001b[30m\u001b[42m..\u001b[39;49m\u001b[0m\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:48 a.err\n-rw-r--r--@    1 demo  wheel  15646 Oct 25 05:49 a.jsonl\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:49 b.err\n-rw-r--r--@    1 demo  wheel  18085 Oct 25 05:49 b.jsonl\n"}}],"rawOutput":{"type":"Bash","output":[116,111,116,97,108,32,55,50,10,100,114,119,120,45,45,45,45,45,45,64,32,32,32,32,54,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,32,32,49,57,50,32,79,99,116,32,50,53,32,48,53,58,52,57,32,27,91,51,52,109,46,27,91,51,57,59,52,57,109,27,91,48,109,10,100,114,119,120,114,119,120,114,119,116,32,32,49,56,50,57,32,114,111,111,116,32,32,32,32,32,32,32,32,32,32,32,32,32,119,104,101,101,108,32,32,53,56,53,50,56,32,79,99,116,32,50,53,32,48,53,58,52,57,32,27,91,51,48,109,27,91,52,50,109,46,46,27,91,51,57,59,52,57,109,27,91,48,109,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,32,32,32,32,48,32,79,99,116,32,50,53,32,48,53,58,52,56,32,97,46,101,114,114,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,49,53,54,52,54,32,79,99,116,32,50,53,32,48,53,58,52,57,32,97,46,106,115,111,110,108,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,32,32,32,32,48,32,79,99,116,32,50,53,32,48,53,58,52,57,32,98,46,101,114,114,10,45,114,119,45,114,45,45,114,45,45,64,32,32,32,32,49,32,97,110,100,114,101,97,49,52,48,103,114,97,109,109,105,32,32,119,104,101,101,108,32,32,49,56,48,56,53,32,79,99,116,32,50,53,32,48,53,58,52,57,32,98,46,106,115,111,110,108,10],"output_for_prompt":"exit: 0\ntotal 72\ndrwx------@    6 demo  wheel    192 Oct 25 05:49 .\ndrwxrwxrwt  1829 root             wheel  58528 Oct 25 05:49 ..\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:48 a.err\n-rw-r--r--@    1 demo  wheel  15646 Oct 25 05:49 a.jsonl\n-rw-r--r--@    1 demo  wheel      0 Oct 25 05:49 b.err\n-rw-r--r--@    1 demo  wheel  18085 Oct 25 05:49 b.jsonl\n","exit_code":0,"command":"ls -la","truncated":false,"signal":null,"timed_out":false,"description":"List files in current workspace","current_dir":"/Users/demo/prova","output_file":"/Users/demo/.grok/sessions/%2Fprivate%2Ftmp%2Fgrokprova.A8C5/fae43707-1e5a-7992-b16e-302b2177df9f/terminal/call-a62256fa-6d8c-4b2f-88c7-30a9fe0155d5-0.log","total_bytes":441},"locations":[]}
+{"type":"text","data":"Nella"}
+{"type":"text","data":" cart"}
+{"type":"text","data":"ella"}
+{"type":"text","data":" `/"}
+{"type":"text","data":"private"}
+{"type":"text","data":"/"}
+{"type":"text","data":"tmp"}
+{"type":"text","data":"/"}
+{"type":"text","data":"gro"}
+{"type":"text","data":"k"}
+{"type":"text","data":"prova"}
+{"type":"text","data":"."}
+{"type":"text","data":"A"}
+{"type":"text","data":"8"}
+{"type":"text","data":"C"}
+{"type":"text","data":"5"}
+{"type":"text","data":"`"}
+{"type":"text","data":" ci"}
+{"type":"text","data":" sono"}
+{"type":"text","data":" "}
+{"type":"text","data":"4"}
+{"type":"text","data":" file"}
+{"type":"text","data":":\n\n"}
+{"type":"text","data":"|"}
+{"type":"text","data":" File"}
+{"type":"text","data":" |"}
+{"type":"text","data":" Dim"}
+{"type":"text","data":"ensione"}
+{"type":"text","data":" |\n"}
+{"type":"text","data":"|"}
+{"type":"text","data":"---|"}
+{"type":"text","data":"---|"}
+{"type":"text","data":"\n"}
+{"type":"text","data":"|"}
+{"type":"text","data":" `"}
+{"type":"text","data":"a"}
+{"type":"text","data":"."}
+{"type":"text","data":"err"}
+{"type":"text","data":"`"}
+{"type":"text","data":" |"}
+{"type":"text","data":" vu"}
+{"type":"text","data":"oto"}
+{"type":"text","data":" ("}
+{"type":"text","data":"0"}
+{"type":"text","data":" byte"}
+{"type":"text","data":")"}
+{"type":"text","data":" |\n"}
+{"type":"text","data":"|"}
+{"type":"text","data":" `"}
+{"type":"text","data":"a"}
+{"type":"text","data":".json"}
+{"type":"text","data":"l"}
+{"type":"text","data":"`"}
+{"type":"text","data":" |"}
+{"type":"text","data":" ~"}
+{"type":"text","data":"15"}
+{"type":"text","data":" KB"}
+{"type":"text","data":" |\n"}
+{"type":"text","data":"|"}
+{"type":"text","data":" `"}
+{"type":"text","data":"b"}
+{"type":"text","data":"."}
+{"type":"text","data":"err"}
+{"type":"text","data":"`"}
+{"type":"text","data":" |"}
+{"type":"text","data":" vu"}
+{"type":"text","data":"oto"}
+{"type":"text","data":" ("}
+{"type":"text","data":"0"}
+{"type":"text","data":" byte"}
+{"type":"text","data":")"}
+{"type":"text","data":" |\n"}
+{"type":"text","data":"|"}
+{"type":"text","data":" `"}
+{"type":"text","data":"b"}
+{"type":"text","data":".json"}
+{"type":"text","data":"l"}
+{"type":"text","data":"`"}
+{"type":"text","data":" |"}
+{"type":"text","data":" ~"}
+{"type":"text","data":"18"}
+{"type":"text","data":" KB"}
+{"type":"text","data":" |\n\n"}
+{"type":"text","data":"Due"}
+{"type":"text","data":" cop"}
+{"type":"text","data":"pie"}
+{"type":"text","data":" `"}
+{"type":"text","data":"a"}
+{"type":"text","data":"`"}
+{"type":"text","data":"/`"}
+{"type":"text","data":"b"}
+{"type":"text","data":"`:"}
+{"type":"text","data":" log"}
+{"type":"text","data":" JSON"}
+{"type":"text","data":"L"}
+{"type":"text","data":" e"}
+{"type":"text","data":" relativi"}
+{"type":"text","data":" file"}
+{"type":"text","data":" di"}
+{"type":"text","data":" errore"}
+{"type":"text","data":" ("}
+{"type":"text","data":"entr"}
+{"type":"text","data":"ambi"}
+{"type":"text","data":" vu"}
+{"type":"text","data":"oti"}
+{"type":"text","data":")."}
+{"type":"text","data":" Su"}
+{"type":"text","data":" cosa"}
+{"type":"text","data":" lavor"}
+{"type":"text","data":"iamo"}
+{"type":"text","data":" oggi"}
+{"type":"text","data":"?"}
+{"type":"usage","usage":{"input_tokens":600,"output_tokens":125,"cache_read_input_tokens":32256,"cache_creation_input_tokens":0,"reasoning_tokens":13},"signature":"j1tfsx9SziFsZK74w/W1wuP2nG2kp9hnVE18edUqYldmnD2xqgdq/WslScudZTHFSgM7uQ3HQPXSJ7OhRiELOlAI7eBSaKqrJ9m3487F4ye8r9vnsms/tg"}
+{"type":"end","stopReason":"end_turn","sessionId":"fae43707-1e5a-7992-b16e-302b2177df9f","requestId":"39d1fa0f-69c2-4614-8c8b-3a17b5ee3076","cwd":"/Users/demo/prova","usage":{"input_tokens":23621,"cache_read_input_tokens":41600,"cache_creation_input_tokens":0,"output_tokens":421,"reasoning_tokens":271,"total_tokens":65642},"num_turns":2,"total_cost_usd":0.02116432,"total_cost_usd_ticks":211643200,"modelUsage":{"grok-4.5-build":{"inputTokens":23621,"outputTokens":421,"cacheReadInputTokens":41600,"cacheCreationInputTokens":0,"modelCalls":2,"costUSD":0.02116432}}}
+{"type":"thought","data":"Eseguirò esattamente"}
+{"type":"thought","data":" il comando `echo ciao"}
+{"type":"thought","data":" > scritto.txt`."}
+{"type":"text","data":"E"}
+{"type":"text","data":"segu"}
+{"type":"text","data":"o"}
+{"type":"text","data":" il"}
+{"type":"text","data":" comando"}
+{"type":"text","data":" richiesto"}
+{"type":"text","data":"."}
+{"type":"usage","usage":{"input_tokens":26344,"output_tokens":190,"cache_read_input_tokens":6016,"cache_creation_input_tokens":0,"reasoning_tokens":158},"signature":"W4oPaCyutoyMgf/W4g5zg+DYU/5DmS0g2DCl62eipI87XXdL7Qo0CxcmTgVFLrY4lAlzQp1hat1e+iEpVOILslUn+PSr+ZzHqWN8ca95fIOR03eF6Q/Gkjcje7LCyh4j2ZtMQr2ustewmJIC1u5rbFWcaLiZntoSCqzNYqDyzbMmPB6YnSXG19GHlEpUFOuZvb+xseJIR51J7+xL1pHfqNAvC2npyuAcYS8MTySIDp7qh8HFOBKpIAnZwJIA+fsTdeLnQM3xvsguES76Nxwyh3e2/Ir8iXre6Yl3/1hXFu+fxjMtvwVqvkH5ZXXeSqHn0Tz2BlFvZWgGNve9jSubiFUf2vQYz6Xphr424SI/c38o+dTX3ujGNnACOPTWrec4aL8GiwsBd3roGzScq9aoxQrkaM+5hx5LuppeV0PlvBcScfvoqied1scmmpSaTeNfGVTWXjncQLn1hhfO8TwQ+LfW8AL2vxzOtxgVQLsKXI3fl9Ca/x+sU0nh5Xy1TllNRXFlRZbDOPxRqBhoo9XRIqYpf46zr6yhMvPtbznw1nZd00Fi8M+YUm7Uri/Xg2HCjcp3evh2rPcHmSMGnExw8iInoJq/53TY6nFXyf4n/xS2XU5KI1bN5cObtoT4iXMk07w5CL0X/DVqKcgzS1wM0uiGTuqBTwSVv2MQ+/hlEtm5+Br9hl24/3Ndq6gpy5+/de7NeLo7NncOQvGJ2udwzHMvE3rEfZvaSXOUVxQX6I9cAiYyQ9f4lUy4IX3kiwZbR7uDSM5ybtSK6HKMbqOsqysvbaS8Eu5rizpTN+8ZbEGMrs5hM00idvMdxZVbrp9eFTL3IuVbQNLFT4o3/ItJKVNj2Bj75kj9BVVYy2ORA7gYg/IyxLw/KDQrkjdLDMUGOLdi3wMg7LHbUL2FXb7SdPBG9xfgTbf485K4/Tgcx1YdDW9znRRAUhgs5matkbre2pWub0X+N7cbCryaMighO6fixMHQyPC/q6s5tA"}
+{"type":"tool_call","toolCallId":"call-d90a20fe-103c-4f70-a6f9-534dd1513dcf-0","title":"run_terminal_command","kind":"execute","status":"pending","toolName":"run_terminal_command","rawInput":{"command":"echo ciao > scritto.txt","description":"Write ciao to scritto.txt"},"content":[],"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-d90a20fe-103c-4f70-a6f9-534dd1513dcf-0","status":null,"content":[{"type":"content","content":{"type":"text","text":"Write ciao to scritto.txt"}}],"rawOutput":null,"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-d90a20fe-103c-4f70-a6f9-534dd1513dcf-0","status":"failed","content":[{"type":"content","content":{"type":"text","text":"User cancelled the execution for tool `run_terminal_command`"}}],"rawOutput":null,"locations":[]}
+{"type":"end","stopReason":"cancelled","sessionId":"9fa203ca-33da-7292-b92c-ed572031cc2b","requestId":"90691054-7a99-4d55-9e12-b721184598f5","cwd":"/Users/demo/prova","usage":{"input_tokens":26344,"cache_read_input_tokens":6016,"cache_creation_input_tokens":0,"output_tokens":190,"reasoning_tokens":158,"total_tokens":32550},"num_turns":1,"total_cost_usd":0.018915152,"total_cost_usd_ticks":189151520,"modelUsage":{"grok-4.5-build":{"inputTokens":26344,"outputTokens":190,"cacheReadInputTokens":6016,"cacheCreationInputTokens":0,"modelCalls":1,"costUSD":0.018915152}}}
+{"type":"text","data":"ciao"}
+{"type":"usage","usage":{"input_tokens":247,"output_tokens":24,"cache_read_input_tokens":32256,"cache_creation_input_tokens":0,"reasoning_tokens":23},"signature":"l/uD89YpVVpA9cwSKfyqxv5zkxtov0l5zPEHJwXZ/baE1gOs97d4NoQ6cbc2fDrq772PlfyEjySiDYjk8Pa3WYtGx9RPxWMLB/1Ut9S8lMZIjZq/w0H3Mvx2emEPbtVnaLPxjIvbgF4+3EiVrtjg0LU1Ip46KrMMakk"}
+{"type":"end","stopReason":"end_turn","sessionId":"593bc136-9a8f-4e6b-a833-d8b597eff5ff","requestId":"59d7aa34-467d-4378-979f-17841bd37b47","cwd":"/Users/demo/prova","usage":{"input_tokens":247,"cache_read_input_tokens":32256,"cache_creation_input_tokens":0,"output_tokens":24,"reasoning_tokens":23,"total_tokens":32527},"num_turns":1,"total_cost_usd":0.003507032,"total_cost_usd_ticks":35070320,"modelUsage":{"grok-4.5-build":{"inputTokens":247,"outputTokens":24,"cacheReadInputTokens":32256,"cacheCreationInputTokens":0,"modelCalls":1,"costUSD":0.003507032}}}
+{"type":"thought","data":"Eseguirò esattamente"}
+{"type":"thought","data":" il comando `echo ciao"}
+{"type":"thought","data":" > scritto.txt`."}
+{"type":"text","data":"E"}
+{"type":"text","data":"segu"}
+{"type":"text","data":"o"}
+{"type":"text","data":" il"}
+{"type":"text","data":" comando"}
+{"type":"text","data":" richiesto"}
+{"type":"text","data":"."}
+{"type":"usage","usage":{"input_tokens":23017,"output_tokens":210,"cache_read_input_tokens":9344,"cache_creation_input_tokens":0,"reasoning_tokens":178},"signature":"7LBGqAZE11LDHGKuM46KNIYkIprklTrt+IQPsBoBMbVUsRd99X1r7BvIUG8YohpT3k6Y3e/vMBy9D58F1rJqH+qtNdlQ9i0nSPWkNPXWwdUQozKlxlY91FPDaGYAiJ2pK/kZdRNIDFJh9MLg3Kc9XXVd85pml0/WKEPM9ZcJRqsvKkGNWNo1XnOhoXMsLTaYrb5zpDWwebTMRctZ8sU5PNlYzCdbfc0ark6QGOqD69oZjU6mpuURpnjIN2duGvB/SUlPmZgLQb1ocx8cq7KUKMabjS0ZTQnA7R9DAGquawn6VqF86yZa+WXWqMJyf5RM2/wsRk40UUf55iozFVQ7Gji+ZkYfGt0lTy+FwZBw2FmACBostxGGHEosqhIbvym9nnir8oV0Q9d3GHBm+1/k7lG87deCnXW0qgeF6dMs37odyjumgsF/oLrjwTFjecxcF/4xMhKZ2wWZm+P+xQaQRRbb30fKEOowCJ2SJXC0WlHquAKQ3fsQDpoTLQybzmRx+K1U2l1dr0bRQRUmjRBJJFUMZDFxwV3bFNnhACeQCVadgCyCv4YpBaSlhHQyJ7hj/yR+0w/bEqBDPl/99lCwrDHxA5bd98Qk/Y2DVma9ViLaFHroAnixV17/rHnLbkDiwNfFablTMkvgzgCHluUjqcYdLNDxJNVCufP9/cI5hjhkBmN90YsZMDI6FT1YLdCDv9B2So8Ijj+Nv5m9Hmph952VDNDlYx5cc6NeG9mNK4YhnYkZmudJmPvuc4x6gc8VkUe1M1GvuaJzY+b3UjnUVyZq9TNcT0G4qskihQFjvOYtWFSPUSwjcwuDITgeZchrRhVMeWI+0FgkanBEKgMRfuUBMockygx3R/TD6Z46wmo0u9MoReatT52360grtWm85/b4ULj7Tc3LeqYOKij7TQ5DVbQPD8wGFVpq3s5z6xMbSzpX8paRi1DeNJqWvU5Ym/U7gt7DwngGHrWw1gEKftH5QJvCxMkFUAR5YF1lpN10jEyXM/66Cx7TXpui7Bb0NHWqs1+RFeFJqI7Ydq+ZFSDRTuArkJ5GSCggejXjsovoKDo4NZ3C7MH9/yoPvGjmJKFaNUgFxeLrsNmxUxHCQ0cFwA"}
+{"type":"tool_call","toolCallId":"call-1e16094a-566d-44a7-a6ec-4430a19e93e7-0","title":"run_terminal_command","kind":"execute","status":"pending","toolName":"run_terminal_command","rawInput":{"command":"echo ciao > scritto.txt","description":"Write ciao to scritto.txt"},"content":[],"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-1e16094a-566d-44a7-a6ec-4430a19e93e7-0","status":null,"content":[{"type":"content","content":{"type":"text","text":"Write ciao to scritto.txt"}}],"rawOutput":null,"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-1e16094a-566d-44a7-a6ec-4430a19e93e7-0","status":"in_progress","content":[{"type":"content","content":{"type":"text","text":""}}],"rawOutput":{"type":"Bash","output":[],"output_for_prompt":"","exit_code":0,"command":"echo ciao > scritto.txt","truncated":false,"signal":null,"timed_out":false,"description":null,"current_dir":"/Users/demo/prova","output_file":"","total_bytes":0},"locations":[]}
+{"type":"tool_call_update","toolCallId":"call-1e16094a-566d-44a7-a6ec-4430a19e93e7-0","status":"completed","content":[{"type":"content","content":{"type":"text","text":""}}],"rawOutput":{"type":"Bash","output":[],"output_for_prompt":"exit: 0\n","exit_code":0,"command":"echo ciao > scritto.txt","truncated":false,"signal":null,"timed_out":false,"description":"Write ciao to scritto.txt","current_dir":"/Users/demo/prova","output_file":"/Users/demo/.grok/sessions/%2Fprivate%2Ftmp%2Fgrokprova.A8C5/49c6e3d8-6287-744c-911c-1df76ade3739/terminal/call-1e16094a-566d-44a7-a6ec-4430a19e93e7-0.log","total_bytes":0},"locations":[]}
+{"type":"text","data":"F"}
+{"type":"text","data":"atto"}
+{"type":"text","data":"."}
+{"type":"text","data":" `"}
+{"type":"text","data":"sc"}
+{"type":"text","data":"rit"}
+{"type":"text","data":"to"}
+{"type":"text","data":".txt"}
+{"type":"text","data":"`"}
+{"type":"text","data":" contiene"}
+{"type":"text","data":" `"}
+{"type":"text","data":"ciao"}
+{"type":"text","data":"`."}
+{"type":"usage","usage":{"input_tokens":331,"output_tokens":27,"cache_read_input_tokens":32256,"cache_creation_input_tokens":0,"reasoning_tokens":14},"signature":"z1XVsDJ/lH+zHrPMTE2Utxgo90WwFxYkVA1A+5n+PdE7+6TnoHKkfBKNtecimlviv/Ka8vkEYjyGPerWqKubADrmHlwnW80LZNo4KKvSDlOJ2BHEx2574Sd5U42xCWwGxGfKCqtxvpMd84A"}
+{"type":"end","stopReason":"end_turn","sessionId":"49c6e3d8-6287-744c-911c-1df76ade3739","requestId":"322ea06a-ba7a-4c16-89dd-3944ffdd6448","cwd":"/Users/demo/prova","usage":{"input_tokens":23348,"cache_read_input_tokens":41600,"cache_creation_input_tokens":0,"output_tokens":237,"reasoning_tokens":192,"total_tokens":65185},"num_turns":2,"total_cost_usd":0.02060332,"total_cost_usd_ticks":206033200,"modelUsage":{"grok-4.5-build":{"inputTokens":23348,"outputTokens":237,"cacheReadInputTokens":41600,"cacheCreationInputTokens":0,"modelCalls":2,"costUSD":0.02060332}}}
